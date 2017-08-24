@@ -1,0 +1,66 @@
+#toast-container {
+    overflow-y: auto;
+    max-height: 400px;
+}
+
+#toast-container::-webkit-scrollbar {
+    width: 2px;
+}
+
+.toast-retry{}
+.toast-retry .toast-toggleInfoButton{
+    float:right;
+}
+.toast-retry .toast-toggleInfoButton[aria-expanded=false]:after{
+    content:"\e113";
+}
+.toast-retry .toast-toggleInfoButton[aria-expanded=true]:after{
+    content:"\e114";
+}
+
+.toast-retry pre{
+    margin-top: 5px;
+}
+.toast-retry .toast-json {
+    background-color: #c3570a;
+    padding: 10px;
+    margin-bottom: 0px;
+    color: white;
+}
+
+.toast-retry .jsonview ul.level1 .prop{
+    font-weight: normal;
+}
+.toast-retry .jsonview ul.level0>li>.prop{
+    font-weight: bold;
+}
+.toast-retry .jsonview .string {
+    color: #a9faa9;
+    white-space: pre-wrap;
+}
+.toast-retry .jsonview .num{
+    color: #b5b5ff;
+}
+.toast-retry .jsonview .nul {
+    color: #ffddd9;
+}
+.toast-retry .jsonview .collapsible {
+    transition: height 1.2s;
+    transition: width 1.2s;
+}
+.toast-retry .jsonview ul {
+    list-style: none;
+    margin: 0 0 0 2em;
+    padding: 0;
+}
+.toast-retry .jsonview li {
+    position: relative;
+}
+.toast-retry .jsonview .collapser {
+    position: absolute;
+    left: -1em;
+    cursor: pointer;
+}
+::-webkit-scrollbar {
+    width: 2px;
+}

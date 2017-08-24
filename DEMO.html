@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Retry's toaster DEMO</title>
+    <script src="http://code.jquery.com/jquery-latest.min.js"></script>
+    <script src="js/toastr-retry.js"></script>
+</head>
+
+<body>
+<link href="css/toastr-retry.css" rel="stylesheet"></link>
+<input type="button" onclick="execute(myTickets)" value="Execute"></input>
+</body>
+
+<script>
+    var myTickets=[
+        {
+            "ticketId":"16692830",
+            "price":126.59,"ruleId":0
+        },
+        {
+            "ticketId":"16692831",
+            "price":126.59,"ruleId":0
+        },
+        {
+            "ticketId":"16692832",
+            "price":126.59,"ruleId":0
+        },
+        {
+            "ticketId":"16692833",
+            "price":126.59,
+            "ruleId":0
+        }
+    ];
+
+
+
+
+    function execute(toPush){
+
+        //begin processing( always fail to process 1st element )
+        var responseObj={ ticket_ids_updated : "", success_count:0 };
+        for(var i=1;i< toPush.length;i++){
+            var v=toPush[i];
+            responseObj.ticket_ids_updated += (responseObj.ticket_ids_updated==''?'':',')+v.ticketId;
+            responseObj.success_count++;
+        }
+        //end processing
+
+        new retryToaster(toPush,responseObj,
+            {
+                onText : function(toPush, responseObj, remaingNonUpdate){
+                    return 'Failed to update ' +
+                        (remaingNonUpdate.length) + '/' + toPush.length + ' tickets' ;
+                },
+                /*onTitle: function(ticketsToPush, responseObj, remaingNonUpdate){
+                    return "retry tester";
+                },*/
+                onTitle: "Retry update tickets (DEMO)",
+                onCalcRemainingNonPushed: function (toPush, responseObj) {
+                    var ret = [];
+                    toPush.forEach(function (current) {
+                        if (responseObj['ticket_ids_updated'].indexOf(current.ticketId) == -1)
+                            ret.push(current);
+                    });
+                    return ret;
+                },
+                onCancel: function (toPush, responseObj, remainingNonUpdades) {
+                    //
+                    //unselectAllTickets(IdsUpdated);
+
+                },
+                onRetry: function (toPush, responseObj, remainingNonUpdated) {
+                    var skipLoader = true;
+                    // any(execute, update, process, insert, [verb])
+                    execute(remainingNonUpdated);
+                },
+                onJSON: function (toPush, responseObj, remainingNonUpdated) {
+                    return {Updating: toPush,
+                            ResponseObj:responseObj,
+                            Remaining:remainingNonUpdated}
+                }
+            });
+
+    }
+</script>
+</html>
