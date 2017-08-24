@@ -47,7 +47,7 @@
         }
         //end processing
 
-        new retryToaster(toPush,responseObj,
+        toastr.retry(toPush,responseObj,
             {
                 onText : function(toPush, responseObj, remaingNonUpdate){
                     return 'Failed to update ' +

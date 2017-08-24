@@ -59,6 +59,11 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 var e=$(event.target).prev(".collapser");
                 if(e.length>0) e[0].click();
             })
+
+            // add toastr.retry()
+            toastr.retry=function(toPush, responseObj, options ) {
+                return new retryToaster(toPush,responseObj,options);
+            }
         });
         // load JSONView
         loadCSS(typeof $.fn.JSONView !== "undefined", "https://cdnjs.cloudflare.com/ajax/libs/jquery-jsonview/1.2.3/jquery.jsonview.css");
