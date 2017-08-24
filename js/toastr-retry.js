@@ -1,5 +1,5 @@
 /**
- * Created by rw on 8/21/2017.
+ * Created by vitorcool on 8/21/2017.
  */
 window.addEventListener("resize",function(event){
     if(typeof jQuery!=="undefined") {
@@ -34,11 +34,16 @@ document.addEventListener("DOMContentLoaded", function(event) {
         location.appendChild(linkTag);
     };
 
+    // load jquery
     loadJS(typeof jQuery !== "undefined",               "http://code.jquery.com/jquery-latest.min.js",function(){
+        // load bootstrap
         loadCSS(typeof $().modal !== "undefined",       "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css");
         loadJS(typeof $().modal !== "undefined",        "https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js");
+        // load toastr
         loadCSS(typeof toastr !== "undefined",          "https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css");
         loadJS(typeof toastr !== "undefined",           "https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js",function(){
+            // set toastr ScrollBar
+
             toastr.setContainerHeight=function(h){
                 h= typeof h=="undefined" ? ($( window ).height()-25) : h;
                 $( "#toast-container" ).css( "maxHeight", ( h ) );
@@ -48,11 +53,16 @@ document.addEventListener("DOMContentLoaded", function(event) {
                 toastr.setContainerHeight();
             });
             toastr.setContainerHeight();
+
+            $(document).on('click','.jsonview .prop',function(event){
+                //event.stopPropagation();
+                var e=$(event.target).prev(".collapser");
+                if(e.length>0) e[0].click();
+            })
         });
+        // load JSONView
         loadCSS(typeof $.fn.JSONView !== "undefined", "https://cdnjs.cloudflare.com/ajax/libs/jquery-jsonview/1.2.3/jquery.jsonview.css");
         loadJS(typeof $.fn.JSONView !== "undefined",  "https://cdnjs.cloudflare.com/ajax/libs/jquery-jsonview/1.2.3/jquery.jsonview.js");
-
-
     });
 
 });
