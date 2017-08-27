@@ -1,0 +1,32 @@
+{
+  "name": "toaster-retry",
+  "version": "1.0.0",
+  "description": "Extension of toastr.js notifications. One notification type \"retry\", for error handling",
+  "main": "index.js",
+  "dependencies": {
+    "jquery": "^3.2.1",
+    "bootstrap": "^3.3.7",
+    "toastr": "^2.1.2",
+    "jsonview": "^1.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"no test specified\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vitorcool/toaster-retry.git"
+  },
+  "keywords": [
+    "toastr-retry",
+    "toastr",
+    "jsonview",
+    "bower"
+  ],
+  "author": "Vitor Oliveira <vitorcool@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/vitorcool/toaster-retry/issues"
+  },
+  "homepage": "https://github.com/vitorcool/toaster-retry#readme"
+}

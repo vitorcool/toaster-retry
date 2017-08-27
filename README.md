@@ -9,6 +9,13 @@
 - [CodeSeven/toastr] - toastr is a Javascript library for non-blocking notifications.
 - [yesmeck/jquery-jsonview] - Formats & syntax highlights JSON.
         
+## Install
+#### [Bower](http://bower.io/search/?q=toaster-retry)
+```
+bower install toaster-retry
+```
+        
+        
 ### Setup
 * Simple (required javascript libraries will be auto-load). Note: In order to stylesheet defs work well, make sure toastr-retry.css is loaded after body tag        
 ```
