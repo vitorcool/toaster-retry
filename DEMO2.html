@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Retry's toaster DEMO</title>
-    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="bower_components/toastr/toastr.min.css" rel="stylesheet">
-    <link href="bower_components/jquery-jsonview/dist/jquery.jsonview.css" rel="stylesheet">
+    <link href="../bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../toastr/toastr.min.css" rel="stylesheet">
+    <link href="../jquery-jsonview/dist/jquery.jsonview.css" rel="stylesheet">
 
-    <script src="bower_components/jquery/dist/jquery.min.js"></script>
-    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-    <script src="bower_components/toastr/toastr.min.js"></script>
-    <script src="js/toastr-retry.js"></script>
+    <script src="../jquery/dist/jquery.min.js"></script>
+    <script src="../bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="../toastr/toastr.min.js"></script>
+    <script src="../toaster-retry/js/toastr-retry.js"></script>
 </head>
 
 <body>
-<link href="css/toastr-retry.css" rel="stylesheet"></link>
+<link href="../toaster-retry/css/toastr-retry.css" rel="stylesheet"></link>
 <style>
     .container{
         padding: 10px;"
@@ -27,7 +27,7 @@
 
 
 <div class="container">
-    <input type="button" class="action btn" onclick="execute_retry(myTickets)" value="retry"></input><br>
+    <input type="button" class="action btn btn-success" onclick="execute_retry(myTickets)" value="retry"></input><br>
     <input type="button" class="action btn notification" value="error"></input><br>
     <input type="button" class="action btn notification" value="success"></input><br>
     <input type="button" class="action btn notification" value="info"></input><br>

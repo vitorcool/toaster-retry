@@ -1,6 +1,6 @@
 {
   "name": "toaster-retry",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Extension of toastr.js notifications. One notification type \"retry\", for error handling",
   "main": "index.js",
   "dependencies": {
