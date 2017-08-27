@@ -3,11 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <title>Retry's toaster DEMO</title>
-    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <link href="bower_components/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="bower_components/toastr/toastr.min.css" rel="stylesheet">
+    <link href="bower_components/jquery-jsonview/dist/jquery.jsonview.css" rel="stylesheet">
+
+    <script src="bower_components/jquery/dist/jquery.min.js"></script>
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="bower_components/toastr/toastr.min.js"></script>
     <script src="js/toastr-retry.js"></script>
 </head>
 
 <body>
+<link href="css/toastr-retry.css" rel="stylesheet"></link>
 <style>
     .container{
         padding: 10px;"
@@ -17,7 +24,7 @@
         width: 100px;
     }
 </style>
-<link href="css/toastr-retry.css" rel="stylesheet"></link>
+
 
 <div class="container">
     <input type="button" class="action btn" onclick="execute_retry(myTickets)" value="retry"></input><br>
@@ -33,17 +40,17 @@
 
     $(".notification").click(function(e){
         $.getJSON( "http://www.randomtext.me/api/lorem/p-2/5-5", function( data ) {
-            var title=$(document).attr('title');
             var method=$(e.target).attr('value');
+            var title=method+' '+$(document).attr('title');
             toastr[method](data.text_out,title);
         });
     });
 
     $(function(){
-       window.alert=function( text ){
-           var title=$(document).attr('title');
-           toastr.error(text, title);
-       }
+        window.alert=function( text ){
+            var title=$(document).attr('title');
+            toastr.error(text, title);
+        }
     });
 
 </script>
@@ -89,8 +96,8 @@
                         (remaingNonUpdate.length) + '/' + toPush.length + ' tickets' ;
                 },
                 /*onTitle: function(ticketsToPush, responseObj, remaingNonUpdate){
-                    return "retry tester";
-                },*/
+                 return "retry tester";
+                 },*/
                 onTitle: "Retry update tickets (DEMO)",
                 onCalcRemainingNonPushed: function (toPush, responseObj) {
                     var ret = [];
@@ -112,8 +119,8 @@
                 },
                 onJSON: function (toPush, responseObj, remainingNonUpdated) {
                     return {Updating: toPush,
-                            ResponseObj:responseObj,
-                            Remaining:remainingNonUpdated}
+                        ResponseObj:responseObj,
+                        Remaining:remainingNonUpdated}
                 },
                 timeOut:0,
             });

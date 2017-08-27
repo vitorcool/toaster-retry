@@ -1,0 +1,32 @@
+{
+  "name": "toaster-retry",
+  "homepage": "file://d:/dev_rw/www/toaster-retry.git/.git",
+  "authors": [
+    { "name": "Vitor Oliveira", "email": "vitorcool@gmail.com"}
+  ],
+  "description": "Extension of toastr.js notifications. One notifiication type \"retry\", for error handling",
+  "main": [
+    "js/toastr-retry.js",
+    "css/toastr-retry.css"
+  ],
+  "keywords": [
+    "toastr-retry",
+    "toastr",
+    "jsonview",
+    "bower"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests",
+    ".idea"
+  ],
+  "dependencies": {
+    "toastr": "^2.1.3",
+    "bootstrap": "^3.3.7",
+    "jquery-jsonview": "jsonview#^1.2.3"
+  }
+}
