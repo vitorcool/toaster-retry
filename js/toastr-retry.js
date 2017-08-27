@@ -163,14 +163,13 @@ var retryToaster = function(to222Push,responseObj, options ){
     this.consoleLog = false;
     this.retryButtonText = "RETRY",
 
-    this.closeButton = true,
+    //this.closeButton = true,
     this.timeOut = 10000,
-    this.tapToDismiss = false,
-    this.closeOnHover = false,
+    //this.tapToDismiss = true,
+    this.closeOnHover = true,
     this.extendedTimeOut = 2000,
 
     this.showInfo = true,
-    this.pushAfterClose = false,
     this.onText = null,
     this.onTitle = null,
     this.onJSON = null,
@@ -189,8 +188,8 @@ var retryToaster = function(to222Push,responseObj, options ){
             if(typeof(val)!='undefined' && toasterOptions[prop]!=val)
                 toasterOptions[prop]=val;
         }
-        setToast('closeButton'  ,options.closeButton);
-        setToast('tapToDismiss' ,options.tapToDismiss);
+        //setToast('closeButton'  ,options.closeButton);
+        //setToast('tapToDismiss' ,options.tapToDismiss);
         setToast('closeOnHover' ,options.closeOnHover);
         setToast('extendedTimeOut',options.extendedTimeOut);
 
@@ -203,9 +202,9 @@ var retryToaster = function(to222Push,responseObj, options ){
     };
 
     var toasterOptions={
-        closeButton     :   this.closeButton,
+        closeButton     :   true,//this.closeButton,
         timeOut         :   0,
-        tapToDismiss    :   this.tapToDismiss,
+        tapToDismiss    :   false,//this.tapToDismiss,
         closeOnHover    :   this.closeOnHover,
         extendedTimeOut :   this.extendedTimeOut,
         onShow : function(e) {
@@ -245,12 +244,8 @@ var retryToaster = function(to222Push,responseObj, options ){
             toastr.clear( thisToaster ,{force:true});
             if(typeof(me.onRetry)=='function')
                 consoleLog('onRetry');
-            if(this.pushAfterClose)
-                window.setTimeout(function(){
-                    me.onRetry.apply( me, [to222Push, responseObj,doCalcRemainingNonPushed()] );
-                },thisToaster.hideDuration);
-            else
-                me.onRetry.apply( me, [to222Push, responseObj,doCalcRemainingNonPushed()] );
+
+            me.onRetry.apply( me, [to222Push, responseObj,doCalcRemainingNonPushed()] );
         },
 
         doCancel = function(){
@@ -269,11 +264,17 @@ var retryToaster = function(to222Push,responseObj, options ){
                 return me.onJSON;
             }else{
                 // default json
-                return {
-                    processing: to222Push,
-                    response: responseObj,
-                    remaining: doCalcRemainingNonPushed(),
-                }
+                var ret={};
+                if(typeof to222Push != undefined && to222Push!=null)
+                    ret.processing= to222Push;
+                if(typeof responseObj != undefined && responseObj!=null)
+                    ret.response= responseObj;
+                var r=doCalcRemainingNonPushed();
+                if(Object.keys(ret).length>0)
+                    ret.remaining=r;
+                if(Object.keys(ret).length==0)
+                    me.showInfo=false;
+                return ret;
             }
         },
         remainingNonPushed=null,

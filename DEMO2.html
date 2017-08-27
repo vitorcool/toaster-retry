@@ -10,11 +10,11 @@
     <script src="../jquery/dist/jquery.min.js"></script>
     <script src="../bootstrap/dist/js/bootstrap.min.js"></script>
     <script src="../toastr/toastr.min.js"></script>
-    <script src="../toaster-retry/js/toastr-retry.js"></script>
+    <script src="js/toastr-retry.js"></script>
 </head>
 
 <body>
-<link href="../toaster-retry/css/toastr-retry.css" rel="stylesheet"></link>
+<link href="css/toastr-retry.css" rel="stylesheet"></link>
 <style>
     .container{
         padding: 10px;"
@@ -28,6 +28,7 @@
 
 <div class="container">
     <input type="button" class="action btn btn-success" onclick="execute_retry(myTickets)" value="retry"></input><br>
+    <input type="button" class="action btn btn-success" onclick="simple_retry()" value="simple retry"></input><br>
     <input type="button" class="action btn notification" value="error"></input><br>
     <input type="button" class="action btn notification" value="success"></input><br>
     <input type="button" class="action btn notification" value="info"></input><br>
@@ -76,6 +77,23 @@
     ];
 
 
+    function simple_retry(){
+        toastr.retry(null,null,
+            {
+                onText : "There have been some errors",
+                onTitle: "Simple Retry",
+                onCancel: function (toPush, responseObj, remainingNonUpdades) {
+                    //
+                    //unselectAllTickets(IdsUpdated);
+
+                },
+                onRetry: function (toPush, responseObj, remainingNonUpdated) {
+                    simple_retry();
+                },
+                timeOut:10000,
+                retryButtonText:'Simple Retry'
+            });
+    }
 
 
     function execute_retry(toPush){
